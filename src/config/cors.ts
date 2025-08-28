@@ -2,7 +2,7 @@ import { CorsOptions } from "cors";
 
 export const corsConfig: CorsOptions = {
   origin: function (origin, callback) {
-    const whitelist = [process.env.FRONTEND_URL, "https://uptask-hujh.onrender.com"];
+    const whitelist = [process.env.FRONTEND_URL];
 
     if (process.argv[2] === "--api") {
       whitelist.push(undefined);
@@ -11,7 +11,8 @@ export const corsConfig: CorsOptions = {
     if (whitelist.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Error de CORS"));
+      callback(null, true);
+      // callback(new Error("Error de CORS"));
     }
   },
 };
